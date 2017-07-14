@@ -366,6 +366,7 @@ public class Channel {
 	 * @return the language in the streamer is streaming
 	 */
 	public final String getLanguange() {
+		if (!this.isLive()) return null; //jsonObj stream returns null when not live.
 		try {
 			URL url = new URL("https://api.twitch.tv/kraken/streams/" + channel.substring(1));
 			URLConnection conn = url.openConnection();
@@ -413,6 +414,7 @@ public class Channel {
 	 */
 	public final int getTotalViews()
 	{
+		if (!this.isLive()) return o; //jsonObj stream returns null when not live.
 		try {
 			URL url = new URL("https://api.twitch.tv/kraken/streams/" + channel.substring(1));
 			URLConnection conn = url.openConnection();
